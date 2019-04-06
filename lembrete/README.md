@@ -1,4 +1,4 @@
-# lembrete_projeto
+# lembrete
 
 ## Project setup
 ```
