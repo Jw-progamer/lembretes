@@ -11,7 +11,7 @@ export default {
   props: {
     lembrete: {
       type: Object
-    }
+    },
   },
   computed: {
     cor_status: function() {
