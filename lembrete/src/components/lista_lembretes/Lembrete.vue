@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile :color="cor_status">
+  <v-list-tile :color="cor_status" to="/edit">
     <v-list-tile-content>
       <v-list-tile-title v-text="lembrete.nome"></v-list-tile-title>
       <v-list-tile-sub-title>Status atual: {{lembrete.status}}. ultima atualização:{{lembrete.ultima_atualizacao}}</v-list-tile-sub-title>
