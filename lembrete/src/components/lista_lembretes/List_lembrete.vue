@@ -1,9 +1,11 @@
 <template>
-  <v-list three-line>
-    <template v-for="lembrete in projetos">
-      <Lembrete :lembrete="lembrete" :key="lembrete['.key']"/>
-    </template>
-  </v-list>
+  <div>
+    <v-list three-line>
+      <template v-for="lembrete in projetos">
+        <Lembrete :lembrete="lembrete" :key="lembrete['.key']"/>
+      </template>
+    </v-list>
+  </div>
 </template>
 <script>
 import Lembrete from "./Lembrete";
