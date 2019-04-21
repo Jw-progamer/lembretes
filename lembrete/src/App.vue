@@ -1,8 +1,10 @@
 <template>
   <v-app>
     <v-content>
-      <Top/>
-      <mainpage/>
+      <v-layout column wrap>
+        <Top/>
+        <mainpage/>
+      </v-layout>
     </v-content>
   </v-app>
 </template>
@@ -14,7 +16,7 @@ export default {
   name: "App",
   components: {
     mainpage,
-    Top,
-  },
+    Top
+  }
 };
 </script>

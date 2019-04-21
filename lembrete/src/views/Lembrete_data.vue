@@ -25,7 +25,14 @@
           full-width
         ></v-date-picker>
       </v-layout>
-      <v-btn block color="info" @click="updateDatabase">Adicionar</v-btn>
+      <v-layout row>
+        <v-btn
+          color="warning"
+          @click="deleteProjetoLembrete"
+          :disabled="lembrete_key == 'new'"
+        >revomer lembrete</v-btn>
+        <v-btn block color="info" @click="updateDatabase">Confirmar lembrete de projeto</v-btn>
+      </v-layout>
     </v-form>
   </v-container>
 </template>
@@ -68,8 +75,6 @@ export default {
   methods: {
     updateDatabase() {
       if (this.lembrete_key === "new") {
-        console.log("Chego aqui");
-        // dbRef.ref("projetos").push(this.lembrete).then(() => { console.log("Funcionou a adição")})
         dbRef.ref("projetos").push({
           nome: this.lembrete.nome,
           status: this.lembrete.status,
@@ -77,7 +82,6 @@ export default {
         });
         this.$router.push("/");
       } else {
-        console.log("Ou não");
         dbRef
           .ref("projetos")
           .child(this.lembrete_key)
@@ -88,6 +92,13 @@ export default {
           });
         this.$router.push("/");
       }
+    },
+    deleteProjetoLembrete() {
+      dbRef
+        .ref("projetos")
+        .child(this.lembrete_key)
+        .remove();
+      this.$router.push("/");
     }
   }
 };
