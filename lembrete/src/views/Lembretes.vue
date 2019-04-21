@@ -8,15 +8,12 @@
 </template>
 
 <script>
-import ListLembrete from "../components/lista_lembretes/List_lembrete";
+import ListLembrete from '../components/lista_lembretes/List_lembrete'
 
 export default {
-  name: "Lembretes",
+  name: 'Lembretes',
   components: {
     ListLembrete
-  },
-};
+  }
+}
 </script>
-
-<style scoped>
-</style>

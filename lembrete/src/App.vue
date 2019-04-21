@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import mainpage from "./views/MainPage";
-import Top from "./components/Top";
+import mainpage from './views/MainPage'
+import Top from './components/Top'
 export default {
-  name: "App",
+  name: 'App',
   components: {
     mainpage,
     Top
   }
-};
+}
 </script>
