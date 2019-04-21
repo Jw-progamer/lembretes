@@ -1,7 +1,7 @@
 <template>
   <div id="lista_projetos">
     <ListLembrete/>
-    <v-btn open-on-hover absolute fab right color="secondary">
+    <v-btn :to="'edit/new'" open-on-hover absolute fab right color="secondary">
       <v-icon>add</v-icon>
     </v-btn>
   </div>

@@ -25,13 +25,23 @@
           full-width
         ></v-date-picker>
       </v-layout>
-      <v-btn block color="info">Adicionar</v-btn>
+      <v-btn block color="info" @click="updateDatabase">Adicionar</v-btn>
     </v-form>
   </v-container>
 </template>
 <script>
+import firebaseref from "../firebaseService";
+
+let dbRef = firebaseref.db;
+
 export default {
   name: "formulario",
+  props: {
+    lembrete_key: {
+      type: String,
+      required: false
+    }
+  },
   data() {
     return {
       lembrete: {
@@ -46,6 +56,39 @@ export default {
         "Em produção"
       ]
     };
+  },
+  firebase() {
+    return {
+      lembrete: {
+        source: dbRef.ref("projetos").child(this.lembrete_key),
+        asObject: true
+      }
+    };
+  },
+  methods: {
+    updateDatabase() {
+      if (this.lembrete_key === "new") {
+        console.log("Chego aqui");
+        // dbRef.ref("projetos").push(this.lembrete).then(() => { console.log("Funcionou a adição")})
+        dbRef.ref("projetos").push({
+          nome: this.lembrete.nome,
+          status: this.lembrete.status,
+          ultima_atualizacao: this.lembrete.ultima_atualizacao
+        });
+        this.$router.push("/");
+      } else {
+        console.log("Ou não");
+        dbRef
+          .ref("projetos")
+          .child(this.lembrete_key)
+          .set({
+            nome: this.lembrete.nome,
+            status: this.lembrete.status,
+            ultima_atualizacao: this.lembrete.ultima_atualizacao
+          });
+        this.$router.push("/");
+      }
+    }
   }
 };
 </script>

@@ -13,9 +13,10 @@ export default new Router({
       component: () => import('./views/Lembretes.vue')
     },
     {
-      path: '/edit',
+      path: '/edit/:lembrete_key',
       name: 'fomulario',
-      component: () => import('./views/Lembrete_data.vue')
+      component: () => import('./views/Lembrete_data.vue'),
+      props: true
     }
   ]
 })
