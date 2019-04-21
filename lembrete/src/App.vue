@@ -1,20 +1,22 @@
 <template>
   <v-app>
     <v-content>
-      <Top/>
-      <mainpage/>
+      <v-layout column wrap>
+        <Top/>
+        <mainpage/>
+      </v-layout>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import mainpage from "./views/MainPage";
-import Top from "./components/Top";
+import mainpage from './views/MainPage'
+import Top from './components/Top'
 export default {
-  name: "App",
+  name: 'App',
   components: {
     mainpage,
-    Top,
-  },
-};
+    Top
+  }
+}
 </script>

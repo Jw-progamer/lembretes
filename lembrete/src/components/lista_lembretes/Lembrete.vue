@@ -11,24 +11,23 @@ export default {
   props: {
     lembrete: {
       type: Object
-    },
+    }
   },
   computed: {
-    cor_status: function() {
+    cor_status: function () {
       switch (this.lembrete.status) {
-        case "Em desenvolvimento sem release":
-          return "#4dd2ff";
-        case "Em desenvolvimento com release":
-          return "#0000cc";
-        case "Em homologação":
-          return "#cccc00";
-        case "em produção":
-          return "#33cc33";
+        case 'Em desenvolvimento sem release':
+          return '#4dd2ff'
+        case 'Em desenvolvimento com release':
+          return '#0000cc'
+        case 'Em homologação':
+          return '#cccc00'
+        case 'em produção':
+          return '#33cc33'
         default:
-          return "#ff3300";
+          return '#ff3300'
       }
     }
   }
-};
+}
 </script>
-

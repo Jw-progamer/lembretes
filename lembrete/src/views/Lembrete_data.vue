@@ -25,24 +25,31 @@
           full-width
         ></v-date-picker>
       </v-layout>
-      <v-btn block color="info" @click="updateDatabase">Adicionar</v-btn>
+      <v-layout row>
+        <v-btn
+          color="warning"
+          @click="deleteProjetoLembrete"
+          :disabled="lembrete_key == 'new'"
+        >revomer lembrete</v-btn>
+        <v-btn block color="info" @click="updateDatabase">Confirmar lembrete de projeto</v-btn>
+      </v-layout>
     </v-form>
   </v-container>
 </template>
 <script>
-import firebaseref from "../firebaseService";
+import firebaseref from '../firebaseService'
 
-let dbRef = firebaseref.db;
+let dbRef = firebaseref.db
 
 export default {
-  name: "formulario",
+  name: 'formulario',
   props: {
     lembrete_key: {
       type: String,
       required: false
     }
   },
-  data() {
+  data () {
     return {
       lembrete: {
         nome: null,
@@ -50,46 +57,49 @@ export default {
         ultima_atualizacao: null
       },
       status_option: [
-        "Em desenvolvimento sem release",
-        "Em desenvolvimento com release",
-        "Em homologação",
-        "Em produção"
+        'Em desenvolvimento sem release',
+        'Em desenvolvimento com release',
+        'Em homologação',
+        'Em produção'
       ]
-    };
+    }
   },
-  firebase() {
+  firebase () {
     return {
       lembrete: {
-        source: dbRef.ref("projetos").child(this.lembrete_key),
+        source: dbRef.ref('projetos').child(this.lembrete_key),
         asObject: true
       }
-    };
+    }
   },
   methods: {
-    updateDatabase() {
-      if (this.lembrete_key === "new") {
-        console.log("Chego aqui");
-        // dbRef.ref("projetos").push(this.lembrete).then(() => { console.log("Funcionou a adição")})
-        dbRef.ref("projetos").push({
+    updateDatabase () {
+      if (this.lembrete_key === 'new') {
+        dbRef.ref('projetos').push({
           nome: this.lembrete.nome,
           status: this.lembrete.status,
           ultima_atualizacao: this.lembrete.ultima_atualizacao
-        });
-        this.$router.push("/");
+        })
+        this.$router.push('/')
       } else {
-        console.log("Ou não");
         dbRef
-          .ref("projetos")
+          .ref('projetos')
           .child(this.lembrete_key)
           .set({
             nome: this.lembrete.nome,
             status: this.lembrete.status,
             ultima_atualizacao: this.lembrete.ultima_atualizacao
-          });
-        this.$router.push("/");
+          })
+        this.$router.push('/')
       }
+    },
+    deleteProjetoLembrete () {
+      dbRef
+        .ref('projetos')
+        .child(this.lembrete_key)
+        .remove()
+      this.$router.push('/')
     }
   }
-};
+}
 </script>
- 
