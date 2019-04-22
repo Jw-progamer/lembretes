@@ -25,13 +25,16 @@
           full-width
         ></v-date-picker>
       </v-layout>
-      <v-layout row>
-        <v-btn
-          color="warning"
-          @click="deleteProjetoLembrete"
-          :disabled="lembrete_key == 'new'"
-        >revomer lembrete</v-btn>
-        <v-btn block color="info" @click="updateDatabase">Confirmar lembrete de projeto</v-btn>
+      <v-layout column centered>
+        <v-flex xs12 wrap>
+          <v-btn
+            block
+            color="warning"
+            @click="deleteProjetoLembrete"
+            :disabled="lembrete_key == 'new'"
+          >revomer lembrete</v-btn>
+          <v-btn block color="info" @click="updateDatabase">Confirmar lembrete de projeto</v-btn>
+        </v-flex>
       </v-layout>
     </v-form>
   </v-container>
